@@ -2,8 +2,8 @@
 # cPanel Django setup script
 # Run this once via SSH after uploading the project to your cPanel home directory
 
-APP_DIR="$HOME/devmvpcodeworks/public_html"
-VENV_DIR="$APP_DIR/venv"
+APP_DIR="/home/devmvpcodeworks/public_html"
+VENV_DIR="$APP_DIR/.venv"
 
 echo "==> Creating virtual environment..."
 virtualenv --python=python3 "$VENV_DIR"

@@ -1,12 +1,13 @@
 import sys
 import os
 
-# Add the application directory to the path
-INTERP = os.path.join(os.environ['HOME'], 'mvpcodeworks.com', 'venv', 'bin', 'python3')
+# Absolute path to the virtual environment python interpreter
+INTERP = os.path.join(os.environ['HOME'], 'devmvpcodeworks', 'public_html', '.venv', 'bin', 'python3.12')
 if sys.executable != INTERP:
     os.execl(INTERP, INTERP, *sys.argv)
 
-sys.path.insert(0, os.path.join(os.environ['HOME'], 'mvpcodeworks.com'))
+# Add the project root (the directory containing the 'mvpcodeworks' package) to path
+sys.path.insert(0, os.path.join(os.environ['HOME'], 'devmvpcodeworks', 'public_html'))
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mvpcodeworks.settings')
 
