@@ -3,8 +3,9 @@ from django.urls import path
 from django.http import HttpResponse
 
 
-def home(request):
-    return HttpResponse("MVP Codeworks — coming soon.")
+def home(request: object) -> HttpResponse:
+    """Placeholder home view — replace with your own."""
+    return HttpResponse("Coming soon.")
 
 
 urlpatterns = [
