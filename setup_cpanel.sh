@@ -78,14 +78,18 @@ pip install -r "${APP_DIR}/requirements.txt"
 # ---------------------------------------------------------------------------
 ENV_FILE="${APP_DIR}/.env"
 if [ ! -f "$ENV_FILE" ]; then
-    echo "==> Creating skeleton .env file (edit before use)..."
+    echo "==> Creating skeleton .env file..."
+    case "$ENV" in
+        dev)  DEFAULT_HOSTS="devmvpcodeworks.com,www.devmvpcodeworks.com,localhost,127.0.0.1" ;;
+        prod) DEFAULT_HOSTS="mvpcodeworks.com,www.mvpcodeworks.com,localhost,127.0.0.1" ;;
+    esac
     cat > "$ENV_FILE" <<EOF
 DJANGO_SECRET_KEY=CHANGE_ME_$(openssl rand -hex 32)
 DJANGO_DEBUG=${DJANGO_DEBUG}
-DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
+DJANGO_ALLOWED_HOSTS=${DEFAULT_HOSTS}
 DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
 EOF
-    echo "    Written to $ENV_FILE — update DJANGO_SECRET_KEY and DJANGO_ALLOWED_HOSTS."
+    echo "    Written to $ENV_FILE — update DJANGO_SECRET_KEY before going live."
 else
     echo "==> .env file already exists, skipping creation."
 fi

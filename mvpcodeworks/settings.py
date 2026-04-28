@@ -10,7 +10,10 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'change-me-in-production')
 
 DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = os.environ.get(
+    'DJANGO_ALLOWED_HOSTS',
+    'mvpcodeworks.com,www.mvpcodeworks.com,localhost,127.0.0.1'
+).split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
