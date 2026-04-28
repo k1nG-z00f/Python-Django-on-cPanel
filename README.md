@@ -10,22 +10,22 @@ A GitHub template for deploying a Django application to **cPanel shared hosting*
 
 Click **"Use this template"** on GitHub, then follow these steps to customise it for your project.
 
-### 1. Rename the Django project package
+### 1. Rename the Django app package
 
-The Django project lives in `project/`. Rename it to match your app name (e.g. `myapp/`):
+The Django project lives in `app/`. Rename it to match your app name (e.g. `myapp/`):
 
 ```bash
-mv project myapp
+mv app myapp
 ```
 
-Then update every reference to `project` in these files:
+Then update every reference to `app` in these files:
 
 | File | Change |
 |---|---|
-| `manage.py` | `'project.settings'` → `'myapp.settings'` |
-| `passenger_wsgi.py` | `'project.settings'` → `'myapp.settings'` |
-| `project/settings.py` | `ROOT_URLCONF`, `WSGI_APPLICATION`, `TEMPLATES DIRS` |
-| `project/wsgi.py` | settings module default |
+| `manage.py` | `'app.settings'` → `'myapp.settings'` |
+| `passenger_wsgi.py` | `'app.settings'` → `'myapp.settings'` |
+| `app/settings.py` | `ROOT_URLCONF`, `WSGI_APPLICATION`, `TEMPLATES DIRS` |
+| `app/wsgi.py` | settings module default |
 | `deploy.config` | `DJANGO_SETTINGS_MODULE` |
 
 ### 2. Configure deploy.config
@@ -42,7 +42,7 @@ DJANGO_SETTINGS_MODULE="myapp.settings"
 
 ### 3. Update the CI workflow
 
-In `.github/workflows/django-ci.yml`, replace `project.settings` with your renamed module if you renamed the project package.
+In `.github/workflows/django-ci.yml`, replace `app.settings` with your renamed module if you renamed the app package.
 
 ---
 
@@ -71,7 +71,7 @@ In `.github/workflows/django-ci.yml`, replace `project.settings` with your renam
 │   │   ├── bug_report.yml
 │   │   └── feature_request.yml
 │   └── PULL_REQUEST_TEMPLATE.md
-├── project/                       # Django project package — rename to your app
+├── app/                       # Django project package — rename to your app
 │   ├── settings.py                # All config via environment variables
 │   ├── urls.py
 │   ├── wsgi.py
@@ -122,7 +122,7 @@ Open [http://127.0.0.1:8000](http://127.0.0.1:8000).
 | `DJANGO_SECRET_KEY` | ✅ | Long random string — never commit the real value |
 | `DJANGO_DEBUG` | ✅ | `True` for dev, `False` for prod |
 | `DJANGO_ALLOWED_HOSTS` | ✅ | Comma-separated hostnames |
-| `DJANGO_SETTINGS_MODULE` | — | Defaults to `project.settings` |
+| `DJANGO_SETTINGS_MODULE` | — | Defaults to `app.settings` |
 
 Generate a strong secret key:
 
@@ -212,7 +212,7 @@ SQLite by default (`db.sqlite3`), excluded from `rsync` to protect live data. `m
 For production workloads requiring concurrent writes, switch to MySQL:
 
 ```python
-# project/settings.py
+# app/settings.py
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
