@@ -1,3 +1,5 @@
-PassengerEnabled On
+# PassengerEnabled is a VirtualHost-level directive and cannot be set here.
+# Enable Passenger via cPanel -> Setup Python App instead.
+# The directives below are allowed in .htaccess context.
 PassengerAppType wsgi
 PassengerStartupFile passenger_wsgi.py
