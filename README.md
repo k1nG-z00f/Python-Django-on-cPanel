@@ -10,25 +10,7 @@ A GitHub template for deploying a Django application to **cPanel shared hosting*
 
 Click **"Use this template"** on GitHub, then follow these steps to customise it for your project.
 
-### 1. Rename the Django app package
-
-The Django project lives in `app/`. Rename it to match your app name (e.g. `myapp/`):
-
-```bash
-mv app myapp
-```
-
-Then update every reference to `app` in these files:
-
-| File | Change |
-|---|---|
-| `manage.py` | `'app.settings'` → `'myapp.settings'` |
-| `passenger_wsgi.py` | `'app.settings'` → `'myapp.settings'` |
-| `app/settings.py` | `ROOT_URLCONF`, `WSGI_APPLICATION`, `TEMPLATES DIRS` |
-| `app/wsgi.py` | settings module default |
-| `deploy.config` | `DJANGO_SETTINGS_MODULE` |
-
-### 2. Configure deploy.config
+### 1. Configure deploy.config
 
 Edit `deploy.config` — this is the **only file** with project-specific deployment values:
 
@@ -37,12 +19,12 @@ DEV_CPANEL_USER="devmyproject"       # cPanel username for staging
 PROD_CPANEL_USER="myproject"         # cPanel username for production
 DEV_HOSTS="dev.myproject.com,localhost,127.0.0.1"
 PROD_HOSTS="myproject.com,www.myproject.com,localhost,127.0.0.1"
-DJANGO_SETTINGS_MODULE="myapp.settings"
+DJANGO_SETTINGS_MODULE="app.settings"
 ```
 
-### 3. Update the CI workflow
+### 2. Update the CI workflow
 
-In `.github/workflows/django-ci.yml`, replace `app.settings` with your renamed module if you renamed the app package.
+Update `.github/workflows/django-ci.yml` with your cPanel usernames and domains if needed.
 
 ---
 
