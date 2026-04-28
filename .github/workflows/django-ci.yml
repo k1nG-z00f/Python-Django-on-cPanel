@@ -30,7 +30,7 @@ jobs:
           DJANGO_SECRET_KEY: ci-secret-key-not-for-production
           DJANGO_DEBUG: "True"
           DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1"
-          DJANGO_SETTINGS_MODULE: project.settings
+          DJANGO_SETTINGS_MODULE: app.settings
         run: python manage.py migrate --check
 
       - name: Run tests
@@ -38,7 +38,7 @@ jobs:
           DJANGO_SECRET_KEY: ci-secret-key-not-for-production
           DJANGO_DEBUG: "True"
           DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1"
-          DJANGO_SETTINGS_MODULE: project.settings
+          DJANGO_SETTINGS_MODULE: app.settings
         run: python manage.py test
 
       - name: Check collectstatic
@@ -46,5 +46,5 @@ jobs:
           DJANGO_SECRET_KEY: ci-secret-key-not-for-production
           DJANGO_DEBUG: "False"
           DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1"
-          DJANGO_SETTINGS_MODULE: project.settings
+          DJANGO_SETTINGS_MODULE: app.settings
         run: python manage.py collectstatic --noinput --dry-run

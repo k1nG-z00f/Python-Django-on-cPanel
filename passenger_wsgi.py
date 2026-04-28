@@ -19,7 +19,7 @@ try:
 except ImportError:
     pass  # dotenv not yet installed; rely on cPanel env vars
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
 
 from django.core.wsgi import get_wsgi_application  # noqa: E402
 application = get_wsgi_application()
