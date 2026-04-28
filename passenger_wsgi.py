@@ -2,7 +2,7 @@ import sys
 import os
 
 # Absolute path to the virtual environment python interpreter
-INTERP = os.path.join(os.environ['HOME'], 'devmvpcodeworks', 'public_html', '.venv', 'bin', 'python3.12')
+INTERP = os.path.join(os.environ['HOME'], 'devmvpcodeworks', 'public_html', '.venv', 'bin', 'python3')
 if sys.executable != INTERP:
     os.execl(INTERP, INTERP, *sys.argv)
 
